@@ -63,13 +63,28 @@ $superheroes = [
   ],
 ];
 
+if(isset($_GET["query"])){
+    $query = htmlspecialchars($_GET["query"]); //trimming specidal injected characters
 
-$superheroesArr = array();
-array_push($superheroesArr , "<ul>");
     foreach ($superheroes as $superhero):;
-        array_push($superheroesArr , "  <li>" .  $superhero['alias'] . "</li>");
+    if($superhero['name'] == $query || $superhero['alias'] == $query ){
+        $hero = array(
+            "name" => $superhero['name'],
+            "alias" => $superhero['alias'],
+            "biography" => $superhero['biography']
+        );
+        echo json_encode([$hero]);
+        return;
+    }
     endforeach;
-array_push($superheroesArr , "</ul>");
-echo implode("\n", $superheroesArr);
+
+    echo json_encode("superhero not found");
+}else{
+    $superheroesArr = array();
+    foreach ($superheroes as $superhero):;
+        array_push($superheroesArr , $superhero['alias']);
+    endforeach;
+    echo json_encode($superheroesArr);
+}
 
 ?>
