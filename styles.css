@@ -1,0 +1,12 @@
+:root {
+    --grayBody : #f0f0f0;
+    --blueBackground : #4d8ab5;
+    --redButton : #c72523;
+    --blueBlackText : #373e4f;
+    --grayHorizontalLine: #d3d5d3;
+    --blackText : #121212;
+}
+
+html, body{
+    background-color: var(--grayBody);
+}
